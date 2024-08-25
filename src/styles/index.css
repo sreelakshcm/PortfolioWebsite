@@ -4,9 +4,10 @@
 
 html {
   transition: background-color 0.3s;
+  scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
 }

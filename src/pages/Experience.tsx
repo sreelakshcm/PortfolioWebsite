@@ -65,7 +65,7 @@ const Experience: React.FC = () => {
   };
 
   return (
-    <section className="text-fontDarkLight dark:text-fontDarkDark py-20">
+    <section id="experience" className="text-fontDarkLight dark:text-fontDarkDark py-20">
       <div className="max-w-7xl mx-auto px-4">
         <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-12 text-center text-primaryLight dark:text-primaryDark">
           Experience
@@ -103,7 +103,7 @@ const Experience: React.FC = () => {
                 {exp.responsibilities.length > 3 && (
                   <button
                     onClick={() => toggleExpand(index)}
-                    className="mt-4 flex items-center text-fontLightLight dark:text-primaryDark focus:outline-none"
+                    className="mt-4 flex items-center cursor-pointer text-fontLightLight dark:text-primaryDark focus:outline-none"
                   >
                     {expandedIndices.includes(index) ? <FaChevronUp /> : <FaChevronDown />}
                     <span className="ml-2 text-sm font-semibold">

@@ -43,7 +43,7 @@ const Carousel: React.FC = () => {
   };
 
   return (
-    <section className="bg-backgroundLight dark:bg-backgroundDark text-fontDarkLight dark:text-fontDarkDark py-10 sm:py-16">
+    <section className="bg-none text-fontDarkLight dark:text-fontDarkDark py-10 sm:py-16">
       <div className="max-w-7xl mx-auto px-4 relative">
         <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-6 text-center">
           Explore My Skills
@@ -51,7 +51,7 @@ const Carousel: React.FC = () => {
         <div className="relative flex items-center">
           <button
             onClick={prevSlide}
-            className="absolute left-0 top-1/2 transform -translate-y-1/2 p-2 sm:p-3 lg:p-4 text-primaryLight dark:text-primaryDark bg-white dark:bg-gray-800 rounded-full shadow-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition duration-300 z-10"
+            className="absolute left-0 cursor-pointer top-1/2 transform -translate-y-1/2 p-2 sm:p-3 lg:p-4 text-primaryLight dark:text-primaryDark bg-white dark:bg-gray-800 rounded-full shadow-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition duration-300 z-10"
           >
             &#10094;
           </button>
@@ -97,7 +97,7 @@ const Carousel: React.FC = () => {
 
           <button
             onClick={nextSlide}
-            className="absolute right-0 top-1/2 transform -translate-y-1/2 p-2 sm:p-3 lg:p-4 text-primaryLight dark:text-primaryDark bg-white dark:bg-gray-800 rounded-full shadow-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition duration-300 z-10"
+            className="absolute cursor-pointer right-0 top-1/2 transform -translate-y-1/2 p-2 sm:p-3 lg:p-4 text-primaryLight dark:text-primaryDark bg-white dark:bg-gray-800 rounded-full shadow-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition duration-300 z-10"
           >
             &#10095;
           </button>

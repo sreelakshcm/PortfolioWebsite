@@ -9,19 +9,19 @@ const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="bg-fontDarkDark dark:bg-backgroundDark text-fontDarkLight dark:text-fontDarkDark py-6 shadow-top">
+    <footer className="bg-fontDarkDark dark:bg-backgroundDark text-fontDarkLight dark:text-fontDarkDark z-0 py-6 shadow-top">
       <div className="max-w-7xl mx-auto px-4 text-center">
         <div className="flex justify-center space-x-6 mb-4">
-          <button onClick={() => openInNewTab('tel:+919844078134')} className="text-fontLightLight dark:text-primaryDark hover:text-primaryDark dark:hover:text-primaryLightHover">
+          <button onClick={() => openInNewTab('tel:+919844078134')} className="text-fontLightLight cursor-pointer dark:text-primaryDark hover:text-primaryDark dark:hover:text-primaryLightHover">
             <FaPhoneAlt className="w-6 h-6" />
           </button>
-          <button onClick={() => openInNewTab('mailto:sreelakshcm@gmail.com')} className="text-fontLightLight dark:text-primaryDark hover:text-primaryDark dark:hover:text-primaryLightHover">
+          <button onClick={() => openInNewTab('mailto:sreelakshcm@gmail.com')} className="text-fontLightLight cursor-pointer dark:text-primaryDark hover:text-primaryDark dark:hover:text-primaryLightHover">
             <FaEnvelope className="w-6 h-6" />
           </button>
-          <button onClick={() => openInNewTab('https://www.linkedin.com/in/sree-lakshmi-c-m')} className="text-fontLightLight dark:text-primaryDark hover:text-primaryDark dark:hover:text-primaryLightHover">
+          <button onClick={() => openInNewTab('https://www.linkedin.com/in/sree-lakshmi-c-m')} className="text-fontLightLight cursor-pointer dark:text-primaryDark hover:text-primaryDark dark:hover:text-primaryLightHover">
             <FaLinkedin className="w-6 h-6" />
           </button>
-          <button onClick={() => openInNewTab('https://github.com/sreelakshcm')} className="text-fontLightLight dark:text-primaryDark hover:text-primaryDark dark:hover:text-primaryLightHover">
+          <button onClick={() => openInNewTab('https://github.com/sreelakshcm')} className="text-fontLightLight cursor-pointer dark:text-primaryDark hover:text-primaryDark dark:hover:text-primaryLightHover">
             <FaGithub className="w-6 h-6" />
           </button>
         </div>
