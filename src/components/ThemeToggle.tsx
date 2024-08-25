@@ -24,7 +24,7 @@ const ThemeToggle: React.FC = () => {
   return (
     <motion.button
       onClick={handleToggle}
-      className="bg-gray-200 dark:bg-gray-800 text-gray-900 dark:text-gray-100 p-2 rounded-full shadow-md focus:outline-none"
+      className="bg-gray-200 cursor-pointer dark:bg-gray-800 text-gray-900 dark:text-gray-100 p-2 rounded-full shadow-md focus:outline-none"
       initial={{ rotate: 0 }}
       animate={{ rotate: theme === 'light' ? 0 : 180 }}
       transition={{ duration: 0.5 }}

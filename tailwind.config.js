@@ -7,6 +7,10 @@ export default {
   darkMode: 'class', // Enable dark mode with the class strategy
   theme: {
     extend: {
+      cursor: {
+        default: 'url(/assets/Cursors/Default.svg), auto',
+        pointer: 'url(/assets/Cursors/Pointer.svg), auto',
+      },
       fontFamily: {
         sans: ['Poppins', 'sans-serif'], // Applying Poppins font
       },
@@ -14,6 +18,19 @@ export default {
         'top': '0 -2px 4px rgba(0, 0, 0, 0.1)', // Custom top shadow
       },
       colors: {
+        mariner: {
+          '50': '#f0f8fe',
+          '100': '#ddedfc',
+          '200': '#c3e1fa',
+          '300': '#9acff6',
+          '400': '#6ab4f0',
+          '500': '#4797ea',
+          '600': '#2673dd',
+          '700': '#2966cc',
+          '800': '#2753a6',
+          '900': '#254783',
+          '950': '#1b2d50',
+        },
         primaryLight: '#2673dd', // Blue for buttons (light mode)
         primaryLightHover: '#91b7ee', // Hover button (light mode)
         primaryLightActive: '#659be7', // Active button (light mode)
