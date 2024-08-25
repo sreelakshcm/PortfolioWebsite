@@ -28,8 +28,8 @@ To get started with the project, follow these steps:
 1. **Clone the Repository**
 
     ```bash
-    git clone https://github.com/your-username/portfolio-sree.git
-    cd portfolio-sree
+    git clone https://github.com/sreelakshcm/PortfolioWebsite.git
+    cd PortfolioWebsite
     ```
 
 2. **Install Dependencies**
