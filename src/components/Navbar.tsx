@@ -17,7 +17,7 @@ const Navbar: React.FC = () => {
     <nav className="fixed w-full bg-backgroundLight dark:bg-backgroundDark shadow-md z-50">
       <div className="max-w-7xl mx-auto px-4 py-2 flex justify-between items-center">
         <div className="text-xl font-bold cursor-pointer text-fontDarkLight dark:text-fontDarkDark">
-          <Link to="home" smooth={true} duration={500}>
+          <Link to="home" offset={-68} smooth={true} duration={500}>
             <img src={theme === 'dark' ? '/assets/HomeIcon.svg' : '/assets/HomeIconLight.svg'} alt='home icon' />
           </Link>
         </div>
