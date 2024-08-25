@@ -4,9 +4,9 @@ import { motion } from 'framer-motion';
 const Home: FC = () => {
 
   return (
-    <section id='home' className="max-w-7xl mx-auto pt-12">
+    <section id='home' className="max-w-7xl mx-auto px-4 pt-12 text-center md:text-left">
       <motion.h1
-        className="text-3xl sm:text-4xl md:text-5xl text-center md:text-left lg:text-6xl font-extrabold mb-4 relative overflow-hidden whitespace-nowrap"
+        className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 relative overflow-hidden whitespace-nowrap"
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: 'easeOut' }}
