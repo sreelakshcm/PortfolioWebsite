@@ -1,7 +1,16 @@
 import { FC } from 'react';
 import { motion } from 'framer-motion';
+import RippleButton from '@components/RippleButton';
 
 const Home: FC = () => {
+  const handleDownload = (): void => {
+    const link = document.createElement('a');
+    link.href = '/files/Resume - Sree Lakshmi C M.pdf';
+    link.setAttribute('download', 'Resume-Sree_Lakshmi_C_M.pdf');
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
 
   return (
     <section id='home' className="max-w-7xl mx-auto px-4 pt-12 text-center md:text-left">
@@ -35,7 +44,7 @@ const Home: FC = () => {
         animate={{ opacity: 1 }}
         transition={{ delay: 0.5, duration: 0.8, ease: 'easeOut' }}
       >
-        Shaping Ideas into Code with Precision
+        MERN stack Developer
       </motion.p>
 
       <motion.a
@@ -49,6 +58,9 @@ const Home: FC = () => {
         View My Work
       </motion.a>
 
+      <RippleButton className='ml-5' onClick={handleDownload}>
+        Download Resume
+      </RippleButton>
     </section>
   );
 };

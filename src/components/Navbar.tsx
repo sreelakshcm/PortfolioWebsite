@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-scroll'; // Import Link from react-scroll
+import { Link } from 'react-scroll';
 import ThemeToggle from './ThemeToggle';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import { useSelector } from 'react-redux';
@@ -23,6 +23,7 @@ const Navbar: React.FC = () => {
         </div>
         <div className="hidden md:flex space-x-8 items-center text-fontLightLight dark:text-fontLightDark">
           <Link to="home" smooth={true} offset={-68} duration={500} className="hover:text-primaryLight cursor-pointer dark:hover:text-primaryDark">Home</Link>
+          <Link to="skills" smooth={true} offset={-68} duration={500} className="hover:text-primaryLight cursor-pointer dark:hover:text-primaryDark">Skills</Link>
           <Link to="about" smooth={true} duration={500} className="hover:text-primaryLight cursor-pointer dark:hover:text-primaryDark">About</Link>
           <Link to="experience" smooth={true} duration={500} className="hover:text-primaryLight cursor-pointer dark:hover:text-primaryDark">Experience</Link>
           {/* <Link to="projects" smooth={true} duration={500} className="hover:text-primaryLight cursor-pointer dark:hover:text-primaryDark">Projects</Link> */}
@@ -41,6 +42,7 @@ const Navbar: React.FC = () => {
       <div className={`md:hidden ${isOpen ? 'block' : 'hidden'} absolute top-16 left-0 w-full bg-backgroundLight dark:bg-backgroundDark shadow-lg`}>
         <div className="flex flex-col items-center py-4 space-y-4">
           <Link to="home" smooth={true} duration={500} offset={-68} onClick={toggleMenu} className="text-fontLightLight dark:text-fontLightDark cursor-pointer hover:text-primaryLight dark:hover:text-primaryDark">Home</Link>
+          <Link to="skills" smooth={true} duration={500} onClick={toggleMenu} className="text-fontLightLight dark:text-fontLightDark cursor-pointer hover:text-primaryLight dark:hover:text-primaryDark">Skills</Link>
           <Link to="about" smooth={true} duration={500} onClick={toggleMenu} className="text-fontLightLight dark:text-fontLightDark cursor-pointer hover:text-primaryLight dark:hover:text-primaryDark">About</Link>
           <Link to="experience" smooth={true} duration={500} onClick={toggleMenu} className="text-fontLightLight dark:text-fontLightDark cursor-pointer hover:text-primaryLight dark:hover:text-primaryDark">Experience</Link>
           {/* <Link to="projects" smooth={true} duration={500} onClick={toggleMenu} className="text-fontLightLight dark:text-fontLightDark cursor-pointer hover:text-primaryLight dark:hover:text-primaryDark">Projects</Link> */}
