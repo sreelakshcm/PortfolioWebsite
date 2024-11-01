@@ -47,20 +47,23 @@ const Home: FC = () => {
         MERN stack Developer
       </motion.p>
 
-      <motion.a
-        href="#experience"
-        className="inline-block cursor-pointer bg-primaryLight text-white dark:bg-primaryDark px-6 py-3 sm:px-8 sm:py-4 rounded-full shadow-lg hover:bg-primaryLightHover dark:hover:bg-primaryDarkHover transition duration-300 transform hover:scale-105"
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ delay: 0.6, duration: 0.8, ease: 'easeOut' }}
-        whileHover={{ scale: 1.1 }}
-      >
-        View My Work
-      </motion.a>
+      <div className="flex justify-center md:justify-start space-x-5 mb-8 items-center">
+        <motion.a
+          href="#experience"
+          className="inline-block cursor-pointer bg-primaryLight text-white dark:bg-primaryDark px-4 py-2 sm:px-6 sm:py-3 rounded-full shadow-lg hover:bg-primaryLightHover dark:hover:bg-primaryDarkHover transition duration-300 transform hover:scale-105"
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.6, duration: 0.8, ease: 'easeOut' }}
+          whileHover={{ scale: 1.1 }}
+        >
+          View My Work
+        </motion.a>
 
-      <RippleButton className='ml-5' onClick={handleDownload}>
-        Download Resume
-      </RippleButton>
+        <RippleButton onClick={handleDownload} className='flex items-center gap-2'>
+          <img src={'/assets/utilityIcons/Download.svg'} alt='download icon' />
+          Resume
+        </RippleButton>
+      </div>
     </section>
   );
 };

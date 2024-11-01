@@ -45,7 +45,7 @@ const RippleButton: React.FC<RippleButtonProps> = ({ children, onClick, classNam
     <motion.button
       ref={buttonRef}
       onClick={handleRipple}
-      className={`${className} relative cursor-pointer overflow-hidden text-white bg-primaryLight px-6 py-3 sm:px-8 sm:py-4 rounded-full shadow-lg hover:bg-primaryLightHover dark:hover:bg-primaryDarkHover focus:outline-none`}
+      className={`${className} relative cursor-pointer overflow-hidden text-white bg-primaryLight px-6 py-2 rounded-full shadow-lg hover:bg-primaryLightHover dark:hover:bg-primaryDarkHover focus:outline-none h-12`}
       initial={{ opacity: 0, scale: 0.9 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ delay: 0.8, duration: 0.9, ease: 'easeOut' }}
