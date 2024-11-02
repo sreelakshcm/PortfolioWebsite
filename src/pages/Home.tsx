@@ -36,16 +36,15 @@ const Home: FC = () => {
         >
           Sree Lakshmi C M
         </motion.span>
+        <motion.span
+          className="block text-xl text-fontLightLight dark:text-fontLightDark relative"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.5, duration: 0.8, ease: 'easeOut' }}
+        >
+          MERN Stack Developer
+        </motion.span>
       </motion.h1>
-
-      <motion.p
-        className="text-lg sm:text-xl md:text-2xl mb-6 sm:mb-8 text-fontLightLight dark:text-fontLightDark relative"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.5, duration: 0.8, ease: 'easeOut' }}
-      >
-        MERN stack Developer
-      </motion.p>
 
       <div className="flex justify-center md:justify-start space-x-5 mb-8 items-center">
         <motion.a
@@ -60,7 +59,7 @@ const Home: FC = () => {
         </motion.a>
 
         <RippleButton onClick={handleDownload} className='flex items-center gap-2'>
-          <img src={'/assets/utilityIcons/Download.svg'} alt='download icon' />
+          <img src={'/assets/utilityIcons/Download.svg'} alt='download icon' className='mb-0.5' />
           Resume
         </RippleButton>
       </div>

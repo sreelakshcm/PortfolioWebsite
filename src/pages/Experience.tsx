@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
-import { experiences } from '@shared/constants';
+import { experiences } from '@utils/experiences';
 
 const Experience: React.FC = () => {
-  const [expandedIndices, setExpandedIndices] = useState<number[]>([]);
+  const [expandedSections, setExpandedSections] = useState<{ [key: string]: boolean }>({});
 
-  const toggleExpand = (index: number): void => {
-    setExpandedIndices((prevIndices) =>
-      prevIndices.includes(index)
-        ? prevIndices.filter((i) => i !== index) // Remove index if it's already expanded
-        : [...prevIndices, index], // Add index if it's not expanded
-    );
+  const toggleExpand = (expIndex: number, sectionIndex: number): void => {
+    const key = `${expIndex}-${sectionIndex}`;
+    setExpandedSections((prevSections) => ({
+      ...prevSections,
+      [key]: !prevSections[key],
+    }));
   };
 
   return (
@@ -21,12 +21,12 @@ const Experience: React.FC = () => {
           Experience
         </h2>
         <div className="space-y-6">
-          {experiences.map((exp, index) => (
+          {experiences.map((exp, expIndex) => (
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.2 + index * 0.2, duration: 0.5, ease: 'easeOut' }}
-              key={index}
+              transition={{ delay: 0.2 + expIndex * 0.2, duration: 0.5, ease: 'easeOut' }}
+              key={expIndex}
               className="bg-gradient-to-r from-white via-gray-100 to-gray-200 dark:from-gray-800 dark:via-gray-900 dark:to-gray-800 p-6 rounded-lg shadow-lg"
             >
               <div className="flex items-center mb-4">
@@ -43,33 +43,35 @@ const Experience: React.FC = () => {
                 </div>
               </div>
               <div>
-                <ul className="list-disc list-inside mt-4 space-y-2 text-sm sm:text-base md:text-lg">
-                  {exp.responsibilities.slice(0, 3).map((task, idx) => (
-                    <li key={idx} className="text-fontDarkLight dark:text-fontDarkDark">
-                      {task}
-                    </li>
-                  ))}
-                </ul>
-                {exp.responsibilities.length > 3 && (
-                  <button
-                    onClick={() => toggleExpand(index)}
-                    className="mt-4 flex items-center cursor-pointer text-fontLightLight dark:text-primaryDark focus:outline-none"
-                  >
-                    {expandedIndices.includes(index) ? <FaChevronUp /> : <FaChevronDown />}
-                    <span className="ml-2 text-sm font-semibold">
-                      {expandedIndices.includes(index) ? 'Read Less' : 'Read More'}
-                    </span>
-                  </button>
-                )}
-                {expandedIndices.includes(index) && (
-                  <ul className="list-disc list-inside mt-4 space-y-2 text-sm sm:text-base md:text-lg">
-                    {exp.responsibilities.slice(3).map((task, idx) => (
-                      <li key={idx} className="text-fontDarkLight dark:text-fontDarkDark">
-                        {task}
-                      </li>
-                    ))}
-                  </ul>
-                )}
+                {exp.responsibilities.map((section, sectionIndex) => {
+                  const isExpanded = expandedSections[`${expIndex}-${sectionIndex}`];
+                  return (
+                    <div key={sectionIndex} className="mb-4">
+                      <h4 className="font-semibold text-lg text-primaryLight dark:text-primaryDark">{section.category}</h4>
+                      <ul className="list-disc list-inside mt-2 space-y-2 text-sm sm:text-base md:text-lg">
+                        {isExpanded
+                          ? section.tasks.map((task, taskIdx) => 
+                            <li key={taskIdx} className="text-fontDarkLight dark:text-fontDarkDark">{task}</li>,
+                          )
+                          : section.tasks.slice(0, 3).map((task, taskIdx) => 
+                            <li key={taskIdx} className="text-fontDarkLight dark:text-fontDarkDark">{task}</li>,
+                          )
+                        }
+                      </ul>
+                      {section.tasks.length > 3 && (
+                        <button
+                          onClick={() => toggleExpand(expIndex, sectionIndex)}
+                          className="mt-4 flex items-center cursor-pointer text-fontLightLight dark:text-primaryDark focus:outline-none"
+                        >
+                          {isExpanded ? <FaChevronUp /> : <FaChevronDown />}
+                          <span className="ml-2 text-sm font-semibold">
+                            {isExpanded ? 'Read Less' : 'Read More'}
+                          </span>
+                        </button>
+                      )}
+                    </div>
+                  );
+                })}
               </div>
               {exp.highlights && (
                 <div className="mt-6">

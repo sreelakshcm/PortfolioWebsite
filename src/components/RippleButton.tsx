@@ -33,7 +33,7 @@ const RippleButton: React.FC<RippleButtonProps> = ({ children, onClick, classNam
 
       setTimeout(() => {
         ripple.remove();
-      }, 300); // Match this duration with your CSS transition duration
+      }, 300);
     }
 
     if (onClick) {
@@ -45,7 +45,7 @@ const RippleButton: React.FC<RippleButtonProps> = ({ children, onClick, classNam
     <motion.button
       ref={buttonRef}
       onClick={handleRipple}
-      className={`${className} relative cursor-pointer overflow-hidden text-white bg-primaryLight px-6 py-2 rounded-full shadow-lg hover:bg-primaryLightHover dark:hover:bg-primaryDarkHover focus:outline-none h-12`}
+      className={`${className} relative cursor-pointer overflow-hidden text-white bg-primaryLight px-4 py-2 rounded-full shadow-lg hover:bg-primaryLightHover dark:hover:bg-primaryDarkHover focus:outline-none h-12`}
       initial={{ opacity: 0, scale: 0.9 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ delay: 0.8, duration: 0.9, ease: 'easeOut' }}

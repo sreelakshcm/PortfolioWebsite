@@ -8,6 +8,7 @@ import About from './About';
 import Experience from './Experience';
 import Contact from './Contact';
 import Skills from './Skills';
+import AlertContainer from '@components/AlertContainer';
 
 const Portfolio: React.FC = () => {
   const theme = useSelector((state: RootState) => state.theme.theme);
@@ -29,6 +30,7 @@ const Portfolio: React.FC = () => {
         </ul>
 
         <div className="text-fontDarkLight py-12 md:py-16 relative z-10">
+          <AlertContainer />
           <Home />
           <Skills />
           <About />

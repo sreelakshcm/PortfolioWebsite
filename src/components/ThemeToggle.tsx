@@ -1,13 +1,15 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { toggleTheme, selectTheme } from '../features/theme/themeSlice';
+import { toggleTheme, selectTheme } from '../features/themeSlice';
 import { RootState } from '../app/store';
 import { FaSun, FaMoon } from 'react-icons/fa';
 import { motion } from 'framer-motion';
+import { closeNavbar } from '@features/navbarSlice';
 
 const ThemeToggle: React.FC = () => {
   const dispatch = useDispatch();
   const theme = useSelector((state: RootState) => selectTheme(state));
+  const isNavbarOpen = useSelector((state: RootState) => state.navbar.isOpen);
 
   useEffect(() => {
     if (theme === 'dark') {
@@ -19,6 +21,7 @@ const ThemeToggle: React.FC = () => {
 
   const handleToggle = (): void => {
     dispatch(toggleTheme());
+    if (isNavbarOpen) setTimeout(() => dispatch(closeNavbar()), 300);
   };
 
   return (
