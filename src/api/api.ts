@@ -10,7 +10,7 @@ const getAPIUrl = (): string => {
     return `${protocol}//${hostname}:${servicePort}/api`;
   }
 
-  return `${protocol}//${hostname}/api`;
+  return 'https://portfolio-website-service.vercel.app';
 };
 
 const baseURL = getAPIUrl();
