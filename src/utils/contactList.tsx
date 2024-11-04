@@ -1,13 +1,13 @@
 import {
-  FaLinkedin, FaGithub, FaPhoneAlt, FaEnvelope,
+  FaLinkedin, FaGithub, FaEnvelope,
 } from 'react-icons/fa';
 
 export const contactLinks = [
-  {
-    href: 'tel:+919844078134',
-    icon: FaPhoneAlt,
-    label: 'Phone',
-  },
+  // {
+  //   href: 'tel:+919844078134',
+  //   icon: FaPhoneAlt,
+  //   label: 'Phone',
+  // },
   {
     href: 'mailto:sreelakshcm@gmail.com',
     icon: FaEnvelope,
