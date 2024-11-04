@@ -31,7 +31,7 @@ const About: React.FC = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.6, ease: 'easeOut' }}
             >
-              Hello! I'm <span className="font-bold text-primaryLight dark:text-primaryDark">Sree Lakshmi C M</span>, a passionate and driven Software Developer with a keen interest in solving complex problems and creating impactful solutions. My expertise lies in crafting dynamic and user-friendly web interfaces using <span className="font-semibold text-primaryLight dark:text-primaryDark">React</span>, both in JavaScript and TypeScript. I specialize in building scalable and robust applications that not only meet but exceed user expectations.
+              Hi, I'm <span className="font-bold text-primaryLight dark:text-primaryDark">Sree Lakshmi C M</span>, a MERN stack developer with a knack for creating efficient, scalable web applications. My expertise spans the entire development stack, from dynamic front-end interfaces with <span className="font-semibold text-primaryLight dark:text-primaryDark">React</span> and <span className="font-semibold text-primaryLight dark:text-primaryDark">Redux</span> to powerful back-end services with <span className="font-semibold text-primaryLight dark:text-primaryDark">Node.js</span> and <span className="font-semibold text-primaryLight dark:text-primaryDark">Express</span>.
             </motion.p>
             <motion.p
               className="text-lg text-fontDarkLight dark:text-fontDarkDark mb-6"
@@ -39,7 +39,7 @@ const About: React.FC = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6, duration: 0.6, ease: 'easeOut' }}
             >
-              My experience extends to backend technologies as well, including <span className="font-semibold text-primaryLight dark:text-primaryDark">Node.js</span>, <span className="font-semibold text-primaryLight dark:text-primaryDark">Express.js</span>, and <span className="font-semibold text-primaryLight dark:text-primaryDark">MySQL</span>. This diverse skill set enables me to develop full-stack solutions that are both efficient and maintainable. I am committed to continuous learning and growth, always staying updated with the latest technologies and industry trends to deliver solutions that drive user satisfaction and business success.
+              I’m skilled with both NoSQL (<span className="font-semibold text-primaryLight dark:text-primaryDark">MongoDB</span>) and SQL databases, including <span className="font-semibold text-primaryLight dark:text-primaryDark">MySQL</span> and <span className="font-semibold text-primaryLight dark:text-primaryDark">MSSQL</span>, enabling me to deliver full-stack solutions tailored to client needs.
             </motion.p>
             <motion.p
               className="text-lg text-fontDarkLight dark:text-fontDarkDark"
@@ -47,7 +47,7 @@ const About: React.FC = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8, duration: 0.6, ease: 'easeOut' }}
             >
-              I thrive in collaborative environments and enjoy working closely with teams to tackle new challenges and deliver high-quality software. Let's connect and explore how we can build something extraordinary together!
+              I’m passionate about building seamless user experiences and am committed to delivering high-quality, impactful software. Let’s connect and create something remarkable together!
             </motion.p>
           </div>
         </div>

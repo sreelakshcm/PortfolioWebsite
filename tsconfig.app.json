@@ -23,8 +23,11 @@
     "baseUrl": "./src",
     "paths": {
       "@components/*": ["components/*"],
-      "@features/*": ["features/*"],
+      "@features/*": ["app/features/*"],
       "@app/*": ["app/*"],
+      "@utils/*": ["utils/*"],
+      "@api/*": ["api/*"],
+      "@icons/*": ["assets/icons/*"],
       "@styles/*": ["styles/*"]
     }
   },

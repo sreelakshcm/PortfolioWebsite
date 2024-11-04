@@ -11,22 +11,22 @@ const Carousel: React.FC = () => {
     {
       title: 'Frontend',
       description: 'React JS / TS, React Redux, React Router Dom, SCSS, HTML / CSS',
-      icons: ['/assets/Frontend/HTML.svg', '/assets/Frontend/CSS.svg', '/assets/Frontend/JS.svg', '/assets/Frontend/TypeScript.svg', '/assets/Frontend/React.svg'],
+      icons: ['/assets/Skills/Frontend/HTML.svg', '/assets/Skills/Frontend/CSS.svg', '/assets/Skills/Frontend/JS.svg', '/assets/Skills/Frontend/TypeScript.svg', '/assets/Skills/Frontend/React.svg'],
     },
     {
       title: 'Backend',
       description: 'Node.js, Express.js',
-      icons: [theme === 'light' ? '/assets/Backend/Backend.svg' : '/assets/Backend/BackendLight.svg'],
+      icons: [theme === 'light' ? '/assets/Skills/Backend/Backend.svg' : '/assets/Skills/Backend/BackendLight.svg'],
     },
     {
       title: 'Database',
       description: 'MySQL, MsSQL, Knex.js',
-      icons: [theme === 'light' ? '/assets/Database/MsSql.svg' : '/assets/Database/MsSqlLight.svg', '/assets/Database/MySql.svg'],
+      icons: [theme === 'light' ? '/assets/Skills/Database/MsSql.svg' : '/assets/Skills/Database/MsSqlLight.svg', '/assets/Skills/Database/MySql.svg'],
     },
     {
       title: 'UI Libraries / Frameworks',
       description: 'Ant Design, Material UI, Bootstrap, Tailwind CSS',
-      icons: ['/assets/UI/MUI.svg', '/assets/UI/Antd.svg', theme === 'light' ? '/assets/UI/Tailwind.svg' : '/assets/UI/TailwindLight.svg', '/assets/UI/Bootstrap.svg'],
+      icons: ['/assets/Skills/UI/MUI.svg', '/assets/Skills/UI/Antd.svg', theme === 'light' ? '/assets/Skills/UI/Tailwind.svg' : '/assets/Skills/UI/TailwindLight.svg', '/assets/Skills/UI/Bootstrap.svg'],
     },
   ];
 
