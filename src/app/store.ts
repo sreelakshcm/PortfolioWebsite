@@ -1,7 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { persistStore, persistReducer } from 'redux-persist';
+import {
+  persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER,
+} from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-import themeReducer from '../features/theme/themeSlice';
+import themeReducer from '@features/themeSlice';
+import alertReducer from '@features/alertSlice';
+import navbarSlice from '@features/navbarSlice';
+import loaderSlice from '@features/loaderSlice';
 
 const persistConfig = {
   key: 'root',
@@ -13,7 +18,16 @@ const persistedThemeReducer = persistReducer(persistConfig, themeReducer);
 export const store = configureStore({
   reducer: {
     theme: persistedThemeReducer,
+    alert: alertReducer,
+    navbar: navbarSlice,
+    loader: loaderSlice,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
 });
 
 export const persistor = persistStore(store);

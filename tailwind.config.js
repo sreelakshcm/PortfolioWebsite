@@ -10,6 +10,7 @@ export default {
       cursor: {
         default: 'url(/assets/Cursors/Default.svg), auto',
         pointer: 'url(/assets/Cursors/Pointer.svg), auto',
+        text: 'url(/assets/Cursors/Text.svg), auto',
       },
       fontFamily: {
         sans: ['Poppins', 'sans-serif'], // Applying Poppins font
@@ -30,6 +31,14 @@ export default {
           '800': '#2753a6',
           '900': '#254783',
           '950': '#1b2d50',
+        },
+        primary: {
+          '50': '#e9f1fc',
+          '100': '#d3e2f8',
+          '200': '#bdd4f5',
+          '300': '#a7c6f1',
+          '400': '#91b7ee',
+          '500': '#7ba9ea',
         },
         primaryLight: '#2673dd', // Blue for buttons (light mode)
         primaryLightHover: '#91b7ee', // Hover button (light mode)
