@@ -4,8 +4,8 @@ import ThemeToggle from './ThemeToggle';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@app/store';
-import { toggleNavbar, closeNavbar } from '@features/navbarSlice';
-import { motion } from 'framer-motion';
+import { toggleNavbar, closeNavbar } from '@app/features/navbarSlice';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const Navbar: React.FC = () => {
   const dispatch = useDispatch();
@@ -18,6 +18,29 @@ const Navbar: React.FC = () => {
     { to: 'experience', label: 'Experience' },
     { to: 'contact', label: 'Contact' },
   ];
+
+  const containerVariants = {
+    hidden: { opacity: 0, y: -20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        staggerChildren: 0.2,
+        delayChildren: 0.1,
+      },
+    },
+    exit: {
+      opacity: 0,
+      y: -20,
+      transition: { duration: 0.3, delay: 0.1 },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: -10 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.2 } },
+    exit: { opacity: 0, y: -10, transition: { duration: 0.2 } },
+  };
 
   return (
     <nav className="fixed w-full bg-backgroundLight dark:bg-backgroundDark shadow-md z-50">
@@ -43,24 +66,36 @@ const Navbar: React.FC = () => {
           </button>
         </div>
       </div>
-      {isOpen && (
-        <div className="md:hidden absolute top-[52px] left-0 w-full h-screen bg-backgroundLight dark:bg-backgroundDark shadow-lg">
-          <motion.ul className="flex flex-col items-center py-4 space-y-4">
-            {navLinks.map(({ to, label }) => (
-              <motion.li
-                key={to}
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Link to={to} smooth duration={300} onClick={() => dispatch(closeNavbar())} className="text-fontLightLight dark:text-fontLightDark cursor-pointer hover:text-primaryLight dark:hover:text-primaryDark">
-                  {label}
-                </Link>
-              </motion.li>
-            ))}
-            <ThemeToggle />
-          </motion.ul>
-        </div>
-      )}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            className="md:hidden absolute top-[52px] left-0 w-full h-screen bg-backgroundLight dark:bg-backgroundDark shadow-lg"
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            variants={containerVariants}
+          >
+            <motion.ul className="flex flex-col items-center py-4 space-y-4">
+              {navLinks.map(({ to, label }) => (
+                <motion.li
+                  key={to}
+                  variants={itemVariants}
+                  initial="hidden"
+                  animate="visible"
+                  exit="exit"
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <Link to={to} smooth duration={300} onClick={() => dispatch(closeNavbar())} className="text-fontLightLight dark:text-fontLightDark cursor-pointer hover:text-primaryLight dark:hover:text-primaryDark">
+                    {label}
+                  </Link>
+                </motion.li>
+              ))}
+              <ThemeToggle />
+            </motion.ul>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   );
 };

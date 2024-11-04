@@ -10,7 +10,7 @@ const getAPIUrl = (): string => {
     return `${protocol}//${hostname}:${servicePort}/api`;
   }
 
-  return `${protocol}//${hostname}/api/v1`;
+  return `${protocol}//${hostname}/api`;
 };
 
 const baseURL = getAPIUrl();

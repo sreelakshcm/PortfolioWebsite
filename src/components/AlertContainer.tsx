@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { removeAlert } from '@features/alertSlice';
+import { removeAlert } from '@app/features/alertSlice';
 import Alert from './Alert';
 import { RootState } from '@app/store';
 

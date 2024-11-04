@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { toggleTheme, selectTheme } from '../features/themeSlice';
-import { RootState } from '../app/store';
+import { toggleTheme, selectTheme } from '@features/themeSlice';
+import { RootState } from '@app/store';
 import { FaSun, FaMoon } from 'react-icons/fa';
 import { motion } from 'framer-motion';
-import { closeNavbar } from '@features/navbarSlice';
+import { closeNavbar } from '@app/features/navbarSlice';
 
 const ThemeToggle: React.FC = () => {
   const dispatch = useDispatch();

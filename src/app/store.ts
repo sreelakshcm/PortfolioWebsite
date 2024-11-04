@@ -6,6 +6,7 @@ import storage from 'redux-persist/lib/storage';
 import themeReducer from '@features/themeSlice';
 import alertReducer from '@features/alertSlice';
 import navbarSlice from '@features/navbarSlice';
+import loaderSlice from '@features/loaderSlice';
 
 const persistConfig = {
   key: 'root',
@@ -19,6 +20,7 @@ export const store = configureStore({
     theme: persistedThemeReducer,
     alert: alertReducer,
     navbar: navbarSlice,
+    loader: loaderSlice,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
