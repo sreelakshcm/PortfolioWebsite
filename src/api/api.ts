@@ -9,9 +9,9 @@ const getAPIUrl = (): string => {
   if (hostname.includes('localhost')) {
     return `${protocol}//${hostname}:${servicePort}/api`;
   }
-  
+
   const prodURL = hostname || 'https://portfolio-sree-service.vercel.app';
-  return  `${protocol}//${prodURL}:${servicePort}/api`;
+  return `${protocol}//${prodURL}/api`;
 };
 
 const baseURL = getAPIUrl();
