@@ -10,7 +10,7 @@ const getAPIUrl = (): string => {
     return `${protocol}//${hostname}:${servicePort}/api`;
   }
 
-  const prodURL = 'https://portfoliowebsiteservice-production.up.railway.app/api';
+  const prodURL = 'https://portfolioservices-sree.up.railway.app/api';
   return prodURL;
 };
 
