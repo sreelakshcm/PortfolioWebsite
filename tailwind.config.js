@@ -1,9 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: [
-    './src/**/*.{js,ts,jsx,tsx}',
-    './index.html',
-  ],
+  content: ['./src/**/*.{js,ts,jsx,tsx}', './index.html'],
   darkMode: 'class', // Enable dark mode with the class strategy
   theme: {
     extend: {
@@ -16,29 +13,29 @@ export default {
         sans: ['Poppins', 'sans-serif'], // Applying Poppins font
       },
       boxShadow: {
-        'top': '0 -2px 4px rgba(0, 0, 0, 0.1)', // Custom top shadow
+        top: '0 -2px 4px rgba(0, 0, 0, 0.1)', // Custom top shadow
       },
       colors: {
         mariner: {
-          '50': '#f0f8fe',
-          '100': '#ddedfc',
-          '200': '#c3e1fa',
-          '300': '#9acff6',
-          '400': '#6ab4f0',
-          '500': '#4797ea',
-          '600': '#2673dd',
-          '700': '#2966cc',
-          '800': '#2753a6',
-          '900': '#254783',
-          '950': '#1b2d50',
+          50: '#f0f8fe',
+          100: '#ddedfc',
+          200: '#c3e1fa',
+          300: '#9acff6',
+          400: '#6ab4f0',
+          500: '#4797ea',
+          600: '#2673dd',
+          700: '#2966cc',
+          800: '#2753a6',
+          900: '#254783',
+          950: '#1b2d50',
         },
         primary: {
-          '50': '#e9f1fc',
-          '100': '#d3e2f8',
-          '200': '#bdd4f5',
-          '300': '#a7c6f1',
-          '400': '#91b7ee',
-          '500': '#7ba9ea',
+          50: '#e9f1fc',
+          100: '#d3e2f8',
+          200: '#bdd4f5',
+          300: '#a7c6f1',
+          400: '#91b7ee',
+          500: '#7ba9ea',
         },
         primaryLight: '#2673dd', // Blue for buttons (light mode)
         primaryLightHover: '#91b7ee', // Hover button (light mode)

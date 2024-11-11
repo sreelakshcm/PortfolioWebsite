@@ -9,7 +9,7 @@ const AlertContainer: React.FC = () => {
   const alerts = useSelector((state: RootState) => state.alert.alerts);
 
   return (
-    <div className="fixed top-16 left-1/2 transform -translate-x-1/2 space-y-2">
+    <div className="fixed top-16 left-1/2 transform -translate-x-1/2 space-y-2 z-[1]">
       {alerts.map((alert) => (
         <Alert
           key={alert.id}
