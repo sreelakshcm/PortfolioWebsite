@@ -35,7 +35,7 @@ const Contact: React.FC = () => {
   };
 
   const handleEmailValidation = (email: string): void => {
-    if (!validateEmail(email)) {
+    if (email.trim() !== '' && !validateEmail(email)) {
       setErrors((prev) => ({ ...prev, email: true }));
       dispatch(
         addAlert({ message: 'Please Enter a Valid Email!', type: 'error' }),
