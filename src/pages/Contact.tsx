@@ -22,6 +22,18 @@ const Contact: React.FC = () => {
     `bg-gray-100 cursor-text focus-visible:outline-none dark:text-white dark:bg-gray-800 p-4 rounded-lg w-full ${errors[field] ? 'border border-solid border-red-300 shadow-red-500/50 shadow-md' : ''
     }`;
 
+const validateEmail = (email: string): boolean => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+const handleEmailValidation =(email: string): void=>{
+if (!validateEmail(email)) {
+      setErrors((prev) => ({ ...prev, email: true }));
+dispatch(addAlert({ message: 'Please Enter a valid email', type: 'error' }));
+    } 
+}
+
   const handleFormDataChange = (fieldName: keyof ContactFormData, value: string): void => {
     setFormData((prev) => ({
       ...prev,
@@ -88,6 +100,7 @@ const Contact: React.FC = () => {
                 className={inputClassnames('email')}
                 value={formData.email || ''}
                 onChange={(e) => handleFormDataChange('email', e.target.value)}
+onBlur={(e)=>handleEmailValidation(e.target.value)}
               />
               {!formData.email && <span className="absolute left-[6.5rem] top-4 text-red-500">*</span>}
             </div>
