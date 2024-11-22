@@ -11,7 +11,11 @@ const Contact: React.FC = () => {
     email: null,
     message: null,
   });
-  const [errors, setErrors] = useState<{ name: boolean; email: boolean; message: boolean }>({
+  const [errors, setErrors] = useState<{
+    name: boolean;
+    email: boolean;
+    message: boolean;
+  }>({
     name: false,
     email: false,
     message: false,
@@ -19,22 +23,30 @@ const Contact: React.FC = () => {
   const dispatch = useDispatch();
 
   const inputClassnames = (field: keyof ContactFormData): string =>
-    `bg-gray-100 cursor-text focus-visible:outline-none dark:text-white dark:bg-gray-800 p-4 rounded-lg w-full ${errors[field] ? 'border border-solid border-red-300 shadow-red-500/50 shadow-md' : ''
+    `bg-gray-100 cursor-text focus-visible:outline-none dark:text-white dark:bg-gray-800 p-4 rounded-lg w-full ${
+      errors[field]
+        ? 'border border-solid border-red-300 shadow-red-500/50 shadow-md'
+        : ''
     }`;
 
-const validateEmail = (email: string): boolean => {
+  const validateEmail = (email: string): boolean => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
   };
 
-const handleEmailValidation =(email: string): void=>{
-if (!validateEmail(email)) {
+  const handleEmailValidation = (email: string): void => {
+    if (!validateEmail(email)) {
       setErrors((prev) => ({ ...prev, email: true }));
-dispatch(addAlert({ message: 'Please Enter a valid email', type: 'error' }));
-    } 
-}
+      dispatch(
+        addAlert({ message: 'Please Enter a Valid Email!', type: 'error' }),
+      );
+    }
+  };
 
-  const handleFormDataChange = (fieldName: keyof ContactFormData, value: string): void => {
+  const handleFormDataChange = (
+    fieldName: keyof ContactFormData,
+    value: string,
+  ): void => {
     setFormData((prev) => ({
       ...prev,
       [fieldName]: value,
@@ -45,7 +57,9 @@ dispatch(addAlert({ message: 'Please Enter a valid email', type: 'error' }));
     }
   };
 
-  const handleSubmit = async (e: MouseEvent<HTMLButtonElement>): Promise<void> => {
+  const handleSubmit = async (
+    e: MouseEvent<HTMLButtonElement>,
+  ): Promise<void> => {
     e.preventDefault();
     dispatch(setLoading(true));
 
@@ -59,17 +73,29 @@ dispatch(addAlert({ message: 'Please Enter a valid email', type: 'error' }));
 
     // Check if any field is empty
     if (Object.values(newErrors).some((error) => error)) {
-      dispatch(addAlert({ message: 'Please fill all the form fields', type: 'error' }));
+      dispatch(
+        addAlert({ message: 'Please fill all the form fields', type: 'error' }),
+      );
       dispatch(setLoading(false));
       return;
     }
 
     try {
-      const { data } = await apiPost<{ success: boolean; message: string }>('send-email', formData);
+      const { data } = await apiPost<{ success: boolean; message: string }>(
+        'send-email',
+        formData,
+      );
       if (data.success) setFormData({ name: null, email: null, message: null });
-      dispatch(addAlert({ message: data.message, type: data.success ? 'success' : 'error' }));
+      dispatch(
+        addAlert({
+          message: data.message,
+          type: data.success ? 'success' : 'error',
+        }),
+      );
     } catch (err) {
-      dispatch(addAlert({ message: (err as Error).message as string, type: 'error' }));
+      dispatch(
+        addAlert({ message: (err as Error).message as string, type: 'error' }),
+      );
     } finally {
       dispatch(setLoading(false));
     }
@@ -91,7 +117,11 @@ dispatch(addAlert({ message: 'Please Enter a valid email', type: 'error' }));
                 value={formData.name || ''}
                 onChange={(e) => handleFormDataChange('name', e.target.value)}
               />
-              {!formData.name && <span className="absolute left-[6.7rem] top-4 text-red-500">*</span>}
+              {!formData.name && (
+                <span className="absolute left-[6.7rem] top-4 text-red-500">
+                  *
+                </span>
+              )}
             </div>
             <div className="relative w-full">
               <input
@@ -100,13 +130,21 @@ dispatch(addAlert({ message: 'Please Enter a valid email', type: 'error' }));
                 className={inputClassnames('email')}
                 value={formData.email || ''}
                 onChange={(e) => handleFormDataChange('email', e.target.value)}
-onBlur={(e)=>handleEmailValidation(e.target.value)}
+                onBlur={(e) => handleEmailValidation(e.target.value)}
               />
-              {!formData.email && <span className="absolute left-[6.5rem] top-4 text-red-500">*</span>}
+              {!formData.email && (
+                <span className="absolute left-[6.5rem] top-4 text-red-500">
+                  *
+                </span>
+              )}
             </div>
           </div>
           <div className="relative w-full">
-            {!formData.message && <span className="absolute left-[8.2rem] top-4 text-red-500">*</span>}
+            {!formData.message && (
+              <span className="absolute left-[8.2rem] top-4 text-red-500">
+                *
+              </span>
+            )}
             <textarea
               placeholder="Your Message"
               className={inputClassnames('message')}

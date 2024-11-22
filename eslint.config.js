@@ -27,11 +27,10 @@ export default [
         },
       },
       globals: { ...globals.node, ...globals.browser },
-
     },
     plugins: {
       '@typescript-eslint': typescriptEslint,
-      'tailwindcss': tailwindcss, // Add the Tailwind CSS plugin
+      tailwindcss: tailwindcss, // Add the Tailwind CSS plugin
     },
     rules: {
       '@typescript-eslint/explicit-function-return-type': [
@@ -41,7 +40,10 @@ export default [
       '@typescript-eslint/prefer-as-const': 'error',
       '@typescript-eslint/prefer-function-type': 'error',
       '@typescript-eslint/no-explicit-any': 'error',
-      'no-unused-vars': ['error', { vars: 'all', args: 'after-used', ignoreRestSiblings: false }],
+      'no-unused-vars': [
+        'error',
+        { vars: 'all', args: 'after-used', ignoreRestSiblings: false },
+      ],
     },
   },
 
@@ -78,14 +80,20 @@ export default [
     files: ['**/*.{js,jsx,mjs,cjs,ts,tsx}'],
     rules: {
       'object-shorthand': 'off',
-      'semi': ['error', 'always'],
-      'quotes': ['error', 'single', { avoidEscape: true }],
-      'indent': ['error', 2, { SwitchCase: 1 }],
+      semi: ['error', 'always'],
+      quotes: ['error', 'single', { avoidEscape: true }],
+      indent: ['error', 2, { SwitchCase: 1 }],
       'eol-last': ['error', 'always'],
       'no-multiple-empty-lines': ['error', { max: 1, maxEOF: 0 }],
       'no-console': 'error',
-      'object-curly-newline': ['error', { multiline: true, minProperties: 4, consistent: true }],
-      'object-property-newline': ['error', { allowAllPropertiesOnSameLine: true }],
+      'object-curly-newline': [
+        'error',
+        { multiline: true, minProperties: 4, consistent: true },
+      ],
+      'object-property-newline': [
+        'error',
+        { allowAllPropertiesOnSameLine: true },
+      ],
       'comma-dangle': ['error', 'always-multiline'],
     },
   },
