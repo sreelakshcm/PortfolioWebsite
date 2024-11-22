@@ -5,7 +5,7 @@ export const certifications = [
     provider: 'Credo Systemz',
     date: 'December 2022',
     link: 'https://drive.google.com/file/d/1Z0rSBNTMQFbKgqCLFrHTeM4R3HagtEH3/view?usp=sharing',
-    image: '/assets/img/Web-certificate.jpg',
+    image: '/assets/img/Web-Certificate.jpg',
   },
   {
     description: 'Backend Development',
