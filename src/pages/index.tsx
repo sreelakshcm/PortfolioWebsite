@@ -10,6 +10,7 @@ import Skills from './Skills';
 import AlertContainer from '@components/AlertContainer';
 import Loader from '@components/Loader';
 import Projects from './Projects';
+import Certifications from './Certifications';
 
 const Portfolio: React.FC = () => {
   const theme = useSelector((state: RootState) => state.theme.theme);
@@ -29,6 +30,7 @@ const Portfolio: React.FC = () => {
         <About />
         <Projects />
         <Experience />
+        <Certifications />
         <Contact />
       </div>
     </div>
