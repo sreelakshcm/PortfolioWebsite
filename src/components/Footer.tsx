@@ -1,32 +1,14 @@
-import { contactLinks } from '@utils/contactList';
-import React from 'react';
+import { FC } from 'react';
 
-const Footer: React.FC = () => {
-  const openInNewTab = (url: string): void => {
-    window.open(url, '_blank');
-  };
-
-  return (
-    <footer className="bg-fontDarkDark dark:bg-backgroundDark text-fontDarkLight dark:text-fontDarkDark z-0 py-6 shadow-top">
-      <div className="max-w-7xl mx-auto px-4 text-center">
-        <div className="flex justify-center space-x-6 mb-4">
-          {contactLinks.map(({ href, icon: Icon, label }) => (
-            <button
-              key={label}
-              onClick={() => openInNewTab(href)}
-              className="text-fontLightLight cursor-pointer dark:text-primaryDark hover:text-primaryDark dark:hover:text-primaryLightHover"
-              aria-label={label}
-            >
-              <Icon className="w-6 h-6" />
-            </button>
-          ))}
-        </div>
-        <p className="text-sm text-gray-500 dark:text-gray-400">
-          &copy; {new Date().getFullYear()}. All rights reserved.
-        </p>
-      </div>
-    </footer>
-  );
-};
+const Footer: FC = () => (
+  <footer className="border-t border-line px-5 py-[27px] font-mono text-[11px] text-muted">
+    <div className="mx-auto max-w-[1160px]">
+      © 2026 Sree Lakshmi C M ·{' '}
+      <a className="text-muted hover:text-violet" href="https://www.linkedin.com/in/sree-lakshmi-c-m" target="_blank" rel="noreferrer">LinkedIn</a>
+      {' '}·{' '}
+      <a className="text-muted hover:text-violet" href="https://github.com/sreelakshcm" target="_blank" rel="noreferrer">GitHub</a>
+    </div>
+  </footer>
+);
 
 export default Footer;

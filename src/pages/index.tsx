@@ -1,5 +1,5 @@
 import React from 'react';
-import '@styles/home-page.css';
+// import '@styles/home-page.css';
 import { useSelector } from 'react-redux';
 import { RootState } from '@app/store';
 import Home from './Home';
@@ -9,7 +9,7 @@ import Contact from './Contact';
 import Skills from './Skills';
 import AlertContainer from '@components/AlertContainer';
 import Loader from '@components/Loader';
-import Certifications from './Certifications';
+import Projects from './Projects';
 
 const Portfolio: React.FC = () => {
   const theme = useSelector((state: RootState) => state.theme.theme);
@@ -18,20 +18,8 @@ const Portfolio: React.FC = () => {
   return (
     <div className={`${theme}-theme relative`}>
       {loading && <Loader />}
-      <ul className={`background ${loading ? 'blur' : ''}`}>
-        <li className="absolute bg-white opacity-20"></li>
-        <li className="absolute bg-white opacity-20"></li>
-        <li className="absolute bg-white opacity-20"></li>
-        <li className="absolute bg-white opacity-20"></li>
-        <li className="absolute bg-white opacity-20"></li>
-        <li className="absolute bg-white opacity-20"></li>
-        <li className="absolute bg-white opacity-20"></li>
-        <li className="absolute bg-white opacity-20"></li>
-        <li className="absolute bg-white opacity-20"></li>
-        <li className="absolute bg-white opacity-20"></li>
-      </ul>
       <div
-        className={`text-fontDarkLight py-12 md:py-16 relative z-10 ${
+        className={`text-fontDarkLight relative ${
           loading ? 'blur' : ''
         }`}
       >
@@ -39,8 +27,8 @@ const Portfolio: React.FC = () => {
         <Home />
         <Skills />
         <About />
+        <Projects />
         <Experience />
-        <Certifications />
         <Contact />
       </div>
     </div>

@@ -4,7 +4,7 @@ import Layout from '@components/Layout';
 
 const App: React.FC = () => {
   return (
-    <div className="min-h-screen font-sans bg-background dark:bg-darkBackground text-dark dark:text-light cursor-default">
+    <div className="min-h-screen cursor-default bg-paper font-sans text-ink">
       <Navbar />
       <Layout />
     </div>

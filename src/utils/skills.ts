@@ -51,3 +51,30 @@ export const skills = [
     ],
   },
 ];
+
+// import { SkillCategory } from '@types-local/pageTypes';
+
+// export const skills: SkillCategory[] = [
+//   {
+//     title: 'Front end',
+//     skills:
+//       'HTML · CSS · JavaScript · React JS · TypeScript · Redux Toolkit · React Router · Vite · ESLint',
+//     accent: 'lavender',
+//   },
+//   {
+//     title: 'Back end',
+//     skills: 'Node.js · Express.js · JWT · Axios · Lodash',
+//     accent: 'mint',
+//   },
+//   {
+//     title: 'Data & workflows',
+//     skills: 'MongoDB · MySQL · MSSQL · Knex.js · React Flow',
+//     accent: 'peach',
+//   },
+//   {
+//     title: 'UI & delivery',
+//     skills:
+//       'Tailwind CSS · Material UI · Ant Design · Bootstrap · Sass · Git · GitHub',
+//     accent: 'blue',
+//   },
+// ];

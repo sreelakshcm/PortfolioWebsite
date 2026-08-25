@@ -1,99 +1,66 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
-import { experiences } from '@utils/experiences';
+import { FC } from 'react';
 
-const Experience: React.FC = () => {
-  const [expandedSections, setExpandedSections] = useState<{ [key: string]: boolean }>({});
+const roles = [
+  {
+    period: 'AUG 2023 — DEC 2024',
+    title: 'Associate Software Engineer',
+    company: 'Kaay Labs · Software Development',
+    summary: 'Built modular applications across the front end and backend for workflow-focused business products.',
+    highlights: [
+      'Created responsive React and TypeScript interfaces, including dynamic workflow experiences with React Flow.',
+      'Managed client state and API integrations with Redux Toolkit, Redux Persist, Axios, and date utilities.',
+      'Contributed Node.js and Express services, database work with Knex and SQL, plus PDF and XLSX exports.',
+    ],
+    link: 'https://github.com/sreelakshcm',
+  },
+  {
+    period: 'FEB 2023 — AUG 2023',
+    title: 'Software Developer',
+    company: 'Schwing Stetter India Pvt. Ltd.',
+    summary: 'Developed a secure production-management application for clear operational visibility across plants.',
+    highlights: [
+      'Built authenticated React dashboards, production modules, and configurators for day-to-day operations.',
+      'Implemented credential validation, authorization, and session management for controlled access.',
+      'Delivered plant-level production insights through gauges, bar charts, and flexible date-based exploration.',
+    ],
+    link: 'https://www.linkedin.com/in/sree-lakshmi-c-m',
+  },
+];
 
-  const toggleExpand = (expIndex: number, sectionIndex: number): void => {
-    const key = `${expIndex}-${sectionIndex}`;
-    setExpandedSections((prevSections) => ({
-      ...prevSections,
-      [key]: !prevSections[key],
-    }));
-  };
-
-  return (
-    <section id="experience" className="text-fontDarkLight dark:text-fontDarkDark py-20">
-      <div className="max-w-7xl mx-auto px-4">
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-12 text-center text-primaryLight dark:text-primaryDark">
-          Experience
-        </h2>
-        <div className="space-y-6">
-          {experiences.map((exp, expIndex) => (
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.2 + expIndex * 0.2, duration: 0.5, ease: 'easeOut' }}
-              key={expIndex}
-              className="bg-gradient-to-r from-white via-gray-100 to-gray-200 dark:from-gray-800 dark:via-gray-900 dark:to-gray-800 p-6 rounded-lg shadow-lg"
-            >
-              <div className="flex items-center mb-4">
-                <div className="w-12 h-12 rounded-full bg-primaryLight dark:bg-primaryDark flex items-center justify-center text-white text-2xl font-bold mr-4">
-                  {exp.icon}
-                </div>
-                <div>
-                  <h3 className="text-xl sm:text-2xl md:text-3xl font-bold mb-2 text-primaryLight dark:text-primaryDark">
-                    {exp.title}
-                  </h3>
-                  <h4 className="text-lg sm:text-xl md:text-2xl mb-2 text-fontDarkLight dark:text-fontDarkDark">
-                    {exp.company} <span className="text-gray-500 dark:text-gray-400">| {exp.duration}</span>
-                  </h4>
-                </div>
-              </div>
-              <div>
-                {exp.responsibilities.map((section, sectionIndex) => {
-                  const isExpanded = expandedSections[`${expIndex}-${sectionIndex}`];
-                  return (
-                    <div key={sectionIndex} className="mb-4">
-                      <h4 className="font-semibold text-lg text-primaryLight dark:text-primaryDark">{section.category}</h4>
-                      <ul className="list-disc list-inside mt-2 space-y-2 text-sm sm:text-base md:text-lg">
-                        {isExpanded
-                          ? section.tasks.map((task, taskIdx) => 
-                            <li key={taskIdx} className="text-fontDarkLight dark:text-fontDarkDark">{task}</li>,
-                          )
-                          : section.tasks.slice(0, 3).map((task, taskIdx) => 
-                            <li key={taskIdx} className="text-fontDarkLight dark:text-fontDarkDark">{task}</li>,
-                          )
-                        }
-                      </ul>
-                      {section.tasks.length > 3 && (
-                        <button
-                          onClick={() => toggleExpand(expIndex, sectionIndex)}
-                          className="mt-4 flex items-center cursor-pointer text-fontLightLight dark:text-primaryDark focus:outline-none"
-                        >
-                          {isExpanded ? <FaChevronUp /> : <FaChevronDown />}
-                          <span className="ml-2 text-sm font-semibold">
-                            {isExpanded ? 'Read Less' : 'Read More'}
-                          </span>
-                        </button>
-                      )}
-                    </div>
-                  );
-                })}
-              </div>
-              {exp.highlights && (
-                <div className="mt-6">
-                  <h5 className="text-lg sm:text-xl md:text-2xl font-semibold text-gray-500 dark:text-gray-400">Key Technologies</h5>
-                  <div className="flex flex-wrap gap-2 mt-2">
-                    {exp.highlights.map((highlight, idx) => (
-                      <span
-                        key={idx}
-                        className="bg-primaryLightActive dark:bg-primaryDarkHover text-white px-3 py-1 rounded-full text-sm font-medium"
-                      >
-                        {highlight}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </motion.div>
-          ))}
+const Experience: FC = () => (
+  <section id="experience" className="mx-auto max-w-[1160px] py-[62px] sm:py-[88px]">
+    <div className="mb-[30px] flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+      <div>
+        <div className="flex items-center gap-[10px] font-mono text-[11px] font-medium uppercase tracking-[0.11em] text-violet">
+          <span className="h-px w-[26px] bg-violet" />
+          Career so far
         </div>
+        <h2 className="mt-[10px] text-[35px] font-bold tracking-[-1.8px] text-ink">Experience, in brief</h2>
       </div>
-    </section>
-  );
-};
+      <p className="max-w-[370px] text-[13px] leading-[1.65] text-muted">
+        A snapshot of the products, workflows, and capabilities I&apos;ve helped build in industry roles.
+      </p>
+    </div>
+
+    <div className="grid gap-3">
+      {roles.map((role) => (
+        <article key={role.title} className="rounded-card border border-line bg-white p-5 sm:p-6">
+          <div className="grid grid-cols-1 gap-5 lg:grid-cols-[170px_1fr_auto] lg:items-start">
+            <time className="font-mono text-[11px] text-violet">{role.period}</time>
+            <div>
+              <h3 className="m-0 text-[18px] font-bold tracking-[-0.6px] text-ink">{role.title}</h3>
+              <p className="mb-0 mt-1 text-[12px] font-semibold text-muted">{role.company}</p>
+              <p className="mb-0 mt-4 text-[13px] leading-[1.65] text-muted">{role.summary}</p>
+              <ul className="mb-0 mt-4 grid gap-2 pl-4 text-[12px] leading-[1.65] text-muted marker:text-violet">
+                {role.highlights.map((highlight) => <li key={highlight}>{highlight}</li>)}
+              </ul>
+            </div>
+            <a href={role.link} target="_blank" rel="noreferrer" aria-label={`Open ${role.company}`} className="hidden text-[18px] text-ink no-underline transition-colors hover:text-violet lg:block">↗</a>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+);
 
 export default Experience;
