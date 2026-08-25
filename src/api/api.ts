@@ -1,5 +1,5 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
-import { AnyObject } from 'types/api';
+import { AnyObject } from '@types-local/api';
 
 const servicePort = 8000;
 

@@ -1,62 +1,71 @@
-import React from 'react';
+import { FC } from 'react';
 import { certifications } from '@utils/certifications';
 
-const Certifications: React.FC = () => {
-  return (
-    <section
-      id="certifications"
-      className="text-fontDarkLight dark:text-fontDarkDark py-20"
-    >
-      <div className="max-w-7xl mx-auto px-4">
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-12 text-center text-primaryLight dark:text-primaryDark">
-          Certifications
-        </h2>
-        {/* Container with grid layout for two cards in a row */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {certifications.map((cert, index) => (
-            <div
-              key={index}
-              className="flex flex-col md:flex-row items-center bg-gradient-to-r from-white via-gray-100 to-gray-200 dark:from-gray-800 dark:via-gray-900 dark:to-gray-800 p-6 rounded-lg shadow-lg"
-            >
-              {/* Left Side: Image */}
-              <div className="w-full md:w-1/2 flex justify-center">
-                <img
-                  src={cert.image}
-                  alt={`${cert.title} Certificate`}
-                  className="w-full h-56 object-cover rounded-md"
-                />
+const Certifications: FC = () => (
+  <section
+    id="certifications"
+    className="mx-auto max-w-[1160px] py-[62px] sm:py-[88px]"
+  >
+    <div>
+      <div className="mb-[30px] flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+        <div>
+          <div className="flex items-center gap-[10px] font-mono text-[11px] font-medium uppercase tracking-[0.11em] text-violet">
+            <span className="h-px w-[26px] bg-violet" />
+            Continuing education
+          </div>
+
+          <h2 className="mt-[10px] text-[35px] font-bold tracking-[-1.8px] text-ink">
+            Certifications
+          </h2>
+        </div>
+
+        <p className="max-w-[370px] text-[13px] leading-[1.65] text-muted">
+          Structured learning that supports my work across modern frontend and
+          backend development.
+        </p>
+      </div>
+
+      <div className="grid grid-cols-1 gap-[18px] lg:grid-cols-2">
+        {certifications.map((cert) => (
+          <article
+            key={cert.title}
+            className="group grid overflow-hidden rounded-project border border-line bg-paper transition-transform duration-200 hover:-translate-y-1 sm:grid-cols-[180px_1fr]"
+          >
+            <div className="h-[170px] overflow-hidden border-b border-line bg-lavender sm:h-full sm:min-h-[190px] sm:border-b-0 sm:border-r">
+              <img
+                src={cert.image}
+                alt={`${cert.title} certificate`}
+                className="h-full w-full object-cover object-top transition-transform duration-300 group-hover:scale-[1.03]"
+              />
+            </div>
+
+            <div className="p-5">
+              <div className="font-mono text-[11px] text-violet">
+                {cert.date.toUpperCase()}
               </div>
 
-              {/* Right Side: Details */}
-              <div className="w-full md:w-1/2 mt-4 md:mt-0 md:pl-6">
-                <h3 className="text-xl sm:text-2xl md:text-2xl font-bold mb-2 text-primaryLight dark:text-primaryDark">
-                  {cert.title}
-                </h3>
-                <p className="text-sm sm:text-base text-gray-500 dark:text-gray-400 mb-2">
-                  {cert.description}
-                </p>
-                <p className="text-sm sm:text-base text-fontDarkLight dark:text-fontDarkDark">
-                  Provider:{' '}
-                  <span className="font-semibold">{cert.provider}</span>
-                </p>
-                <p className="text-sm sm:text-base text-fontDarkLight dark:text-fontDarkDark mb-4">
-                  Date: <span className="font-semibold">{cert.date}</span>
-                </p>
-                <a
-                  href={cert.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-block text-primaryLight dark:text-primaryDark hover:underline text-sm sm:text-base font-medium"
-                >
-                  View Certificate
-                </a>
-              </div>
+              <h3 className="mb-2 mt-[7px] text-[16px] font-bold leading-[1.35] tracking-[-0.5px] text-ink">
+                {cert.title}
+              </h3>
+
+              <p className="m-0 text-[12px] leading-[1.65] text-muted">
+                {cert.description} · {cert.provider}
+              </p>
+
+              <a
+                href={cert.link}
+                target="_blank"
+                rel="noreferrer"
+                className="mt-4 inline-block text-[12px] font-extrabold text-violet no-underline hover:underline"
+              >
+                View credential ↗
+              </a>
             </div>
-          ))}
-        </div>
+          </article>
+        ))}
       </div>
-    </section>
-  );
-};
+    </div>
+  </section>
+);
 
 export default Certifications;

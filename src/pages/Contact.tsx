@@ -1,168 +1,451 @@
+import { FC, FormEvent, useState } from 'react';
+import { createPortal } from 'react-dom';
+import { useDispatch } from 'react-redux';
 import { apiPost } from '@api/api';
+import { AppDispatch } from '@app/store';
 import { addAlert } from '@app/features/alertSlice';
 import { setLoading } from '@features/loaderSlice';
-import React, { MouseEvent, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { ContactFormData } from 'types/contactForm';
 
-const Contact: React.FC = () => {
-  const [formData, setFormData] = useState<ContactFormData>({
-    name: null,
-    email: null,
-    message: null,
-  });
-  const [errors, setErrors] = useState<{
-    name: boolean;
-    email: boolean;
-    message: boolean;
-  }>({
-    name: false,
-    email: false,
-    message: false,
-  });
-  const dispatch = useDispatch();
+type FormData = {
+  name: string;
+  email: string;
+  message: string;
+};
 
-  const inputClassnames = (field: keyof ContactFormData): string =>
-    `bg-gray-100 cursor-text focus-visible:outline-none dark:text-white dark:bg-gray-800 p-4 rounded-lg w-full ${
-      errors[field]
-        ? 'border border-solid border-red-300 shadow-red-500/50 shadow-md'
-        : ''
-    }`;
+const emptyForm: FormData = {
+  name: '',
+  email: '',
+  message: '',
+};
 
-  const validateEmail = (email: string): boolean => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-  };
+const Contact: FC = () => {
+  const dispatch = useDispatch<AppDispatch>();
+  const [formData, setFormData] = useState<FormData>(emptyForm);
+  const [isOpen, setIsOpen] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleEmailValidation = (email: string): void => {
-    if (email.trim() !== '' && !validateEmail(email)) {
-      setErrors((prev) => ({ ...prev, email: true }));
-      dispatch(
-        addAlert({ message: 'Please Enter a Valid Email!', type: 'error' }),
-      );
-    }
-  };
-
-  const handleFormDataChange = (
-    fieldName: keyof ContactFormData,
-    value: string,
-  ): void => {
-    setFormData((prev) => ({
-      ...prev,
-      [fieldName]: value,
+  const updateField = (field: keyof FormData, value: string): void => {
+    setFormData((currentForm) => ({
+      ...currentForm,
+      [field]: value,
     }));
-    // Remove error when user starts typing
-    if (value.trim() !== '') {
-      setErrors((prev) => ({ ...prev, [fieldName]: false }));
-    }
   };
 
   const handleSubmit = async (
-    e: MouseEvent<HTMLButtonElement>,
+    event: FormEvent<HTMLFormElement>,
   ): Promise<void> => {
-    e.preventDefault();
-    dispatch(setLoading(true));
+    event.preventDefault();
 
-    // Validate fields
-    const newErrors = {
-      name: formData.name === null || formData.name.trim() === '',
-      email: formData.email === null || formData.email.trim() === '',
-      message: formData.message === null || formData.message.trim() === '',
-    };
-    setErrors(newErrors);
-
-    // Check if any field is empty
-    if (Object.values(newErrors).some((error) => error)) {
+    if (
+      !formData.name.trim() ||
+      !formData.email.trim() ||
+      !formData.message.trim()
+    ) {
       dispatch(
-        addAlert({ message: 'Please fill all the form fields', type: 'error' }),
+        addAlert({
+          message: 'Please complete all fields.',
+          type: 'error',
+        }),
       );
-      dispatch(setLoading(false));
+
       return;
     }
 
+    setIsSubmitting(true);
+    dispatch(setLoading(true));
+
     try {
-      const { data } = await apiPost<{ success: boolean; message: string }>(
-        'send-email',
-        formData,
-      );
-      if (data.success) setFormData({ name: null, email: null, message: null });
+      const { data } = await apiPost<{
+        success: boolean;
+        message: string;
+      }>('send-email', formData);
+
       dispatch(
         addAlert({
-          message: data.message,
+          message:
+            data.message || 'Thanks — your message has been sent.',
           type: data.success ? 'success' : 'error',
         }),
       );
-    } catch (err) {
+
+      if (data.success) {
+        setFormData(emptyForm);
+        setIsOpen(false);
+      }
+    } catch {
       dispatch(
-        addAlert({ message: (err as Error).message as string, type: 'error' }),
+        addAlert({
+          message:
+            'Sorry, your message could not be sent. Please try again shortly.',
+          type: 'error',
+        }),
       );
     } finally {
+      setIsSubmitting(false);
       dispatch(setLoading(false));
     }
   };
 
   return (
-    <section id="contact" className="py-20">
-      <div className="max-w-7xl mx-auto px-4">
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-12 text-center text-primaryLight dark:text-primaryDark">
-          Contact
-        </h2>
-        <form className="space-y-6">
-          <div className="flex flex-col md:flex-row gap-4">
-            <div className="relative w-full">
-              <input
-                type="text"
-                placeholder="Your Name"
-                className={inputClassnames('name')}
-                value={formData.name || ''}
-                onChange={(e) => handleFormDataChange('name', e.target.value)}
-              />
-              {!formData.name && (
-                <span className="absolute left-[6.7rem] top-4 text-red-500">
-                  *
-                </span>
-              )}
-            </div>
-            <div className="relative w-full">
-              <input
-                type="email"
-                placeholder="Your Email"
-                className={inputClassnames('email')}
-                value={formData.email || ''}
-                onChange={(e) => handleFormDataChange('email', e.target.value)}
-                onBlur={(e) => handleEmailValidation(e.target.value)}
-              />
-              {!formData.email && (
-                <span className="absolute left-[6.5rem] top-4 text-red-500">
-                  *
-                </span>
-              )}
-            </div>
-          </div>
-          <div className="relative w-full">
-            {!formData.message && (
-              <span className="absolute left-[8.2rem] top-4 text-red-500">
-                *
-              </span>
-            )}
-            <textarea
-              placeholder="Your Message"
-              className={inputClassnames('message')}
-              rows={6}
-              value={formData.message || ''}
-              onChange={(e) => handleFormDataChange('message', e.target.value)}
-            />
-          </div>
-          <button
-            type="submit"
-            className="inline-block cursor-pointer bg-primaryLight text-white dark:bg-primaryDark px-6 py-3 sm:px-8 sm:py-4 rounded-full shadow-lg hover:bg-primaryLightHover dark:hover:bg-primaryDarkHover transition duration-300 transform hover:scale-105"
-            onClick={handleSubmit}
+    <>
+      {/* Contact Section */}
+      <section
+        id="contact"
+        className="
+          mx-auto
+          mb-[55px]
+          flex
+          max-w-[1160px]
+          flex-col
+          gap-[30px]
+          rounded-contact
+          bg-ink
+          px-[27px]
+          py-[35px]
+          text-white
+          sm:mb-[85px]
+          sm:flex-row
+          sm:items-end
+          sm:justify-between
+          sm:px-[62px]
+          sm:py-[59px]
+        "
+      >
+        {/* Content */}
+        <div>
+          <div
+            className="
+              flex
+              items-center
+              gap-[10px]
+              font-mono
+              text-[11px]
+              font-medium
+              uppercase
+              tracking-[0.11em]
+              text-contact-accent
+            "
           >
-            Send Message
-          </button>
-        </form>
-      </div>
-    </section>
+            <span className="h-px w-[26px] bg-contact-accent" />
+            Start a conversation
+          </div>
+
+          <h2
+            className="
+              mb-0
+              mt-[14px]
+              text-[clamp(34px,4.5vw,52px)]
+              font-bold
+              leading-[1.1]
+              tracking-[-2.5px]
+            "
+          >
+            Let&apos;s make something
+            <br />
+            that matters.
+          </h2>
+
+          <p
+            className="
+              mb-0
+              mt-[14px]
+              text-[14px]
+              leading-[1.7]
+              text-contact-muted
+            "
+          >
+            I&apos;d love to hear about your next role, product, or
+            development challenge.
+          </p>
+        </div>
+
+        {/* Email Button */}
+        <button
+          type="button"
+          onClick={() => setIsOpen(true)}
+          className="
+            w-fit
+            whitespace-nowrap
+            rounded-button
+            bg-white
+            px-[17px]
+            py-[14px]
+            text-[13px]
+            font-extrabold
+            text-ink
+            transition-colors
+            hover:bg-lavender
+          "
+        >
+          Email me ↗
+        </button>
+      </section>
+
+      {/* Contact Modal */}
+      {isOpen &&
+        createPortal(
+          <div
+            className="
+              fixed
+              inset-0
+              z-50
+              flex
+              items-center
+              justify-center
+              bg-ink/45
+              px-5
+              py-8
+              backdrop-blur-[6px]
+            "
+            role="presentation"
+            onMouseDown={() => setIsOpen(false)}
+          >
+            {/* Modal */}
+            <div
+              className="
+                w-full
+                max-w-[560px]
+                rounded-project
+                bg-white
+                p-6
+                shadow-[0_24px_70px_rgba(24,35,52,.28)]
+                sm:p-8
+              "
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="contact-form-title"
+              onMouseDown={(event) => event.stopPropagation()}
+            >
+              {/* Modal Header */}
+              <div className="mb-6 flex items-start justify-between gap-4">
+                <div>
+                  <div
+                    className="
+                      font-mono
+                      text-[11px]
+                      uppercase
+                      tracking-[0.11em]
+                      text-violet
+                    "
+                  >
+                    Start a conversation
+                  </div>
+
+                  <h3
+                    id="contact-form-title"
+                    className="
+                      mb-0
+                      mt-2
+                      text-[25px]
+                      font-bold
+                      tracking-[-1px]
+                      text-ink
+                    "
+                  >
+                    Send a message
+                  </h3>
+                </div>
+
+                {/* Close Button */}
+                <button
+                  type="button"
+                  onClick={() => setIsOpen(false)}
+                  aria-label="Close contact form"
+                  className="
+                    flex
+                    h-9
+                    w-9
+                    items-center
+                    justify-center
+                    rounded-full
+                    border
+                    border-line
+                    text-[20px]
+                    leading-none
+                    text-muted
+                    transition-colors
+                    hover:border-violet
+                    hover:text-violet
+                  "
+                >
+                  ×
+                </button>
+              </div>
+
+              {/* Form */}
+              <form
+                onSubmit={handleSubmit}
+                className="grid gap-4"
+                noValidate
+              >
+                {/* Name & Email */}
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                  <label
+                    className="
+                      grid
+                      gap-1.5
+                      text-[12px]
+                      font-bold
+                      text-muted
+                    "
+                  >
+                    Name
+
+                    <input
+                      type="text"
+                      value={formData.name}
+                      onChange={(event) =>
+                        updateField('name', event.target.value)
+                      }
+                      placeholder="Your name"
+                      required
+                      autoFocus
+                      className="
+                        w-full
+                        rounded-button
+                        border
+                        border-line
+                        bg-paper
+                        px-3
+                        py-3
+                        text-[13px]
+                        text-ink
+                        outline-none
+                        placeholder:text-muted/70
+                        focus:border-violet
+                        focus:bg-white
+                      "
+                    />
+                  </label>
+
+                  <label
+                    className="
+                      grid
+                      gap-1.5
+                      text-[12px]
+                      font-bold
+                      text-muted
+                    "
+                  >
+                    Email
+
+                    <input
+                      type="email"
+                      value={formData.email}
+                      onChange={(event) =>
+                        updateField('email', event.target.value)
+                      }
+                      placeholder="you@example.com"
+                      required
+                      className="
+                        w-full
+                        rounded-button
+                        border
+                        border-line
+                        bg-paper
+                        px-3
+                        py-3
+                        text-[13px]
+                        text-ink
+                        outline-none
+                        placeholder:text-muted/70
+                        focus:border-violet
+                        focus:bg-white
+                      "
+                    />
+                  </label>
+                </div>
+
+                {/* Message */}
+                <label
+                  className="
+                    grid
+                    gap-1.5
+                    text-[12px]
+                    font-bold
+                    text-muted
+                  "
+                >
+                  Message
+
+                  <textarea
+                    rows={5}
+                    value={formData.message}
+                    onChange={(event) =>
+                      updateField('message', event.target.value)
+                    }
+                    placeholder="Tell me a little about what you're building."
+                    required
+                    className="
+                      w-full
+                      resize-y
+                      rounded-button
+                      border
+                      border-line
+                      bg-paper
+                      px-3
+                      py-3
+                      text-[13px]
+                      text-ink
+                      outline-none
+                      placeholder:text-muted/70
+                      focus:border-violet
+                      focus:bg-white
+                    "
+                  />
+                </label>
+
+                {/* Form Actions */}
+                <div
+                  className="
+                    mt-1
+                    flex
+                    flex-col
+                    gap-4
+                    sm:flex-row
+                    sm:items-center
+                    sm:justify-between
+                    sm:gap-3
+                  "
+                >
+                  <a
+                    href="mailto:sreelakshcm@gmail.com"
+                    className="
+                      text-[12px]
+                      font-semibold
+                      text-violet
+                      hover:underline
+                    "
+                  >
+                    Prefer email? Write directly ↗
+                  </a>
+
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="
+                      rounded-button
+                      bg-violet
+                      px-[18px]
+                      py-[13px]
+                      text-[13px]
+                      font-extrabold
+                      text-white
+                      transition-colors
+                      hover:bg-violet-dark
+                      disabled:cursor-not-allowed
+                      disabled:opacity-60
+                    "
+                  >
+                    {isSubmitting ? 'Sending…' : 'Send message ↗'}
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>,
+          document.body,
+        )}
+    </>
   );
 };
 

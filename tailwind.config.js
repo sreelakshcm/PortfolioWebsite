@@ -1,58 +1,62 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ['./src/**/*.{js,ts,jsx,tsx}', './index.html'],
-  darkMode: 'class', // Enable dark mode with the class strategy
+  darkMode: 'class',
+  content: [
+    './index.html',
+    './src/**/*.{js,ts,jsx,tsx}',
+  ],
+
   theme: {
     extend: {
-      cursor: {
-        default: 'url(/assets/Cursors/Default.svg), auto',
-        pointer: 'url(/assets/Cursors/Pointer.svg), auto',
-        text: 'url(/assets/Cursors/Text.svg), auto',
-      },
-      fontFamily: {
-        sans: ['Poppins', 'sans-serif'], // Applying Poppins font
-      },
-      boxShadow: {
-        top: '0 -2px 4px rgba(0, 0, 0, 0.1)', // Custom top shadow
-      },
       colors: {
-        mariner: {
-          50: '#f0f8fe',
-          100: '#ddedfc',
-          200: '#c3e1fa',
-          300: '#9acff6',
-          400: '#6ab4f0',
-          500: '#4797ea',
-          600: '#2673dd',
-          700: '#2966cc',
-          800: '#2753a6',
-          900: '#254783',
-          950: '#1b2d50',
-        },
-        primary: {
-          50: '#e9f1fc',
-          100: '#d3e2f8',
-          200: '#bdd4f5',
-          300: '#a7c6f1',
-          400: '#91b7ee',
-          500: '#7ba9ea',
-        },
-        primaryLight: '#2673dd', // Blue for buttons (light mode)
-        primaryLightHover: '#91b7ee', // Hover button (light mode)
-        primaryLightActive: '#659be7', // Active button (light mode)
-        fontDarkLight: '#1c1c1c', // Dark font (light mode)
-        fontLightLight: '#585757', // Light font (light mode)
-        backgroundLight: '#fafafa', // Background (light mode)
+        ink: '#182334',
+        muted: '#637188',
+        paper: '#fbfcff',
+        line: '#e4e9f1',
 
-        primaryDark: '#2673dd', // Blue for buttons (dark mode)
-        primaryDarkHover: 'rgba(38, 115, 221, 0.3)', // Hover button (dark mode)
-        primaryDarkActive: 'rgba(38, 115, 221, 0.14)', // Active button (dark mode)
-        fontDarkDark: 'rgba(255, 255, 255, 0.9)', // Dark font (dark mode)
-        fontLightDark: 'rgba(255, 255, 255, 0.7)', // Light font (dark mode)
-        backgroundDark: '#1a202c', // Background (dark mode)
+        violet: '#5b5ce2',
+        lavender: '#e9eafe',
+        mint: '#dff7f1',
+        peach: '#ffe5da',
+
+        'violet-dark': '#3b3cb4',
+        'mint-dark': '#18796e',
+        'mint-text': '#47716c',
+        'mint-accent': '#26756b',
+
+        'violet-light': '#7476e8',
+        'lavender-soft': '#f0f2ff',
+        'blue-soft': '#e3ebff',
+        'cyan-soft': '#c9eff5',
+        'blue-gray': '#dfe5ef',
+        'card-gray': '#eef1f8',
+        'peach-light': '#ffeed1',
+
+        'contact-muted': '#bac6d8',
+        'contact-accent': '#a9f0df',
+        'mint-border': '#ccece5',
+      },
+
+      fontFamily: {
+        sans: ['Manrope', 'Arial', 'sans-serif'],
+        mono: ['DM Mono', 'monospace'],
+      },
+
+      borderRadius: {
+        card: '14px',
+        project: '16px',
+        contact: '18px',
+        button: '10px',
+        pill: '99px',
+      },
+
+      boxShadow: {
+        photo: '0 24px 44px rgba(53, 61, 107, 0.18)',
+        card: '0 12px 24px rgba(69, 84, 123, 0.13)',
+        float: '0 10px 25px rgba(53, 61, 107, 0.1)',
       },
     },
   },
-  variants: {},
+
   plugins: [],
 };
