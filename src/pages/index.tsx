@@ -26,10 +26,10 @@ const Portfolio: React.FC = () => {
       >
         <AlertContainer />
         <Home />
+        <Experience />
+        <Projects />
         <Skills />
         <About />
-        <Projects />
-        <Experience />
         <Certifications />
         <Contact />
       </div>

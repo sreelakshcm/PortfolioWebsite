@@ -21,7 +21,7 @@ const principles = [
 const About: FC = () => (
   <section
     id="about"
-    className="mx-auto max-w-[1160px] py-[62px] sm:py-[88px]"
+    className="mx-auto max-w-[1160px] px-4 py-[62px] sm:px-6 sm:py-[88px] lg:px-0"
   >
     <div className="grid grid-cols-1 gap-[55px] lg:grid-cols-[.8fr_1.2fr]">
       <div>

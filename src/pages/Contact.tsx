@@ -73,6 +73,10 @@ const Contact: FC = () => {
             I&apos;d love to hear about your next role, product, or development
             challenge.
           </p>
+
+          <p className="mb-0 mt-3 text-[12px] font-semibold text-contact-muted">
+            References are available on request.
+          </p>
         </div>
 
         <button

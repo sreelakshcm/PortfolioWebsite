@@ -124,30 +124,6 @@ const Skills: React.FC = () => {
         })}
       </div>
 
-      {/* Agentic AI Strip */}
-      <motion.div
-        initial={{ opacity: 0, y: 8 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.2 }}
-        transition={{ duration: 0.35, delay: 0.3, ease: 'easeOut' }}
-        className="mt-4 flex flex-col gap-2 rounded-[13px] border border-[#ccece5] bg-[#dff7f1] p-4 sm:flex-row sm:items-center sm:justify-between sm:px-5 dark:border-[#28544f] dark:bg-[#193b38]"
-      >
-        <div className="flex items-center gap-2.5">
-          <span className="h-2.5 w-2.5 shrink-0 rounded-full bg-[#18796e] dark:bg-[#79cfc3]" />
-          <div>
-            <span className="block font-mono text-[9px] uppercase tracking-[0.08em] text-[#26756b] dark:text-[#79cfc3]">
-              In progress · 2026
-            </span>
-            <strong className="block text-[12px] font-bold text-ink dark:text-white">
-              Agentic AI course
-            </strong>
-          </div>
-        </div>
-
-        <p className="m-0 text-[11px] leading-[1.5] text-[#47716c] sm:max-w-[430px] sm:text-right dark:text-[#9bc9c3]">
-          Expanding into AI-powered workflows and intelligent agents.
-        </p>
-      </motion.div>
     </section>
   );
 };

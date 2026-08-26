@@ -10,6 +10,7 @@ export const contactLinks = [
   // },
   {
     href: 'mailto:sreelakshcm@gmail.com',
+    target: '_blank',
     icon: FaEnvelope,
     label: 'Email',
   },

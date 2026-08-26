@@ -1,4 +1,6 @@
-import { FC, FormEvent, useState } from 'react';
+import {
+  FC, FormEvent, useEffect, useRef, useState,
+} from 'react';
 import { createPortal } from 'react-dom';
 import { useDispatch } from 'react-redux';
 import { apiPost } from '@api/api';
@@ -28,6 +30,65 @@ const ContactModal: FC<ContactModalProps> = ({ isOpen, onClose }) => {
 
   const [formData, setFormData] = useState<FormData>(emptyForm);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const dialogRef = useRef<HTMLDivElement>(null);
+  const previousFocusRef = useRef<HTMLElement | null>(null);
+
+  useEffect(() => {
+    if (!isOpen) return undefined;
+
+    previousFocusRef.current = document.activeElement instanceof HTMLElement
+      ? document.activeElement
+      : null;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+
+    const focusInitialField = (): void => {
+      dialogRef.current?.querySelector<HTMLElement>('[data-autofocus]')?.focus();
+    };
+
+    const handleKeyDown = (event: KeyboardEvent): void => {
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        onClose();
+        return;
+      }
+
+      if (event.key !== 'Tab' || !dialogRef.current) return;
+
+      const focusableElements = Array.from(
+        dialogRef.current.querySelectorAll<HTMLElement>(
+          'a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])',
+        ),
+      );
+
+      const firstElement = focusableElements[0];
+      const lastElement = focusableElements[focusableElements.length - 1];
+
+      if (!firstElement || !lastElement) {
+        event.preventDefault();
+        return;
+      }
+
+      if (event.shiftKey && document.activeElement === firstElement) {
+        event.preventDefault();
+        lastElement.focus();
+      } else if (!event.shiftKey && document.activeElement === lastElement) {
+        event.preventDefault();
+        firstElement.focus();
+      }
+    };
+
+    const frame = requestAnimationFrame(focusInitialField);
+    document.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      cancelAnimationFrame(frame);
+      document.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = previousOverflow;
+      previousFocusRef.current?.focus();
+    };
+  }, [isOpen, onClose]);
 
   if (!isOpen) return null;
 
@@ -110,6 +171,7 @@ const ContactModal: FC<ContactModalProps> = ({ isOpen, onClose }) => {
       onMouseDown={onClose}
     >
       <div
+        ref={dialogRef}
         className="
           w-full
           max-w-[560px]
@@ -199,7 +261,7 @@ const ContactModal: FC<ContactModalProps> = ({ isOpen, onClose }) => {
                 onChange={(event) => updateField('name', event.target.value)}
                 placeholder="Your name"
                 required
-                autoFocus
+                data-autofocus
                 className="
                   w-full
                   rounded-button
