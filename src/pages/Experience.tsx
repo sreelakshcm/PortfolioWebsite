@@ -11,7 +11,6 @@ const roles = [
       'Managed client state and API integrations with Redux Toolkit, Redux Persist, Axios, and date utilities.',
       'Contributed Node.js and Express services, database work with Knex and SQL, plus PDF and XLSX exports.',
     ],
-    link: 'https://github.com/sreelakshcm',
   },
   {
     period: 'FEB 2023 — AUG 2023',
@@ -23,7 +22,6 @@ const roles = [
       'Implemented credential validation, authorization, and session management for controlled access.',
       'Delivered plant-level production insights through gauges, bar charts, and flexible date-based exploration.',
     ],
-    link: 'https://www.linkedin.com/in/sree-lakshmi-c-m',
   },
 ];
 
@@ -45,7 +43,7 @@ const Experience: FC = () => (
     <div className="grid gap-3">
       {roles.map((role) => (
         <article key={role.title} className="rounded-card border border-line bg-white p-5 sm:p-6">
-          <div className="grid grid-cols-1 gap-5 lg:grid-cols-[170px_1fr_auto] lg:items-start">
+          <div className="grid grid-cols-1 gap-5 lg:grid-cols-[170px_1fr] lg:items-start">
             <time className="font-mono text-[11px] text-violet">{role.period}</time>
             <div>
               <h3 className="m-0 text-[18px] font-bold tracking-[-0.6px] text-ink">{role.title}</h3>
@@ -55,7 +53,6 @@ const Experience: FC = () => (
                 {role.highlights.map((highlight) => <li key={highlight}>{highlight}</li>)}
               </ul>
             </div>
-            <a href={role.link} target="_blank" rel="noreferrer" aria-label={`Open ${role.company}`} className="hidden text-[18px] text-ink no-underline transition-colors hover:text-violet lg:block">↗</a>
           </div>
         </article>
       ))}

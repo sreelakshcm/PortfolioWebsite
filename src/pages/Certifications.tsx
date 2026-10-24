@@ -71,11 +71,11 @@ const Certifications: FC = () => (
             Active learning direction · 2026
           </span>
           <p className="mb-0 mt-1 text-[12px] font-bold text-ink dark:text-white">
-            Agentic AI, LangGraph, AutoGen, and Python
+            Agentic AI, LangGraph, and AutoGen
           </p>
         </div>
         <p className="mb-0 text-[11px] leading-[1.55] text-[#47716c] sm:max-w-[390px] sm:text-right dark:text-[#9bc9c3]">
-          Currently building toward practical AI-agent projects by October 2026.
+          Currently building toward practical AI-agent projects by December 2026.
         </p>
       </div>
     </div>

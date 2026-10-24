@@ -183,11 +183,11 @@ const Home: FC = () => {
               Continuous learning · 2026
             </span>
             <p className="mb-0 mt-1 text-[12px] font-bold text-ink dark:text-white">
-              Upskilling in agentic AI, LangGraph, AutoGen, and Python.
+              Upskilling in agentic AI, LangGraph, and AutoGen.
             </p>
           </div>
           <p className="mb-0 text-[11px] leading-[1.55] text-[#47716c] sm:max-w-[350px] sm:text-right dark:text-[#9bc9c3]">
-            Targeting practical AI-agent builds by October 2026.
+            Targeting practical AI-agent builds by December 2026.
           </p>
         </div>
       </section>

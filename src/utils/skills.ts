@@ -34,10 +34,7 @@ export const skills = [
   {
     title: 'Database',
     frameworks: [
-      { name: 'MsSQL', icon: '/assets/Skills/Database/MsSql.svg' },
-      { name: 'MySQL', icon: '/assets/Skills/Database/MySql.svg' },
       { name: 'MongoDB', icon: '/assets/Skills/Database/MongoDb.svg' },
-      { name: 'Knex.js', icon: '/assets/Skills/Database/Knex.svg' },
     ],
   },
   {

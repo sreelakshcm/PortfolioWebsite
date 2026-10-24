@@ -8,10 +8,10 @@ const projectList = [
     title: 'Tourvesta',
     description:
       'A full tour discovery and booking platform that makes planning, reserving, and managing guided travel experiences straightforward.',
-    lightImg: '/assets/projects/tourvesta-light.png',
-    darkImg: '/assets/projects/tourvesta-dark.png',
+    lightImg: '/assets/projects/tourvesta-cover-light.jpg',
+    darkImg: '/assets/projects/tourvesta-cover-dark.jpg',
     liveUrl: 'https://tourvesta-web.vercel.app/',
-    repoUrl: 'https://github.com/sreelakshcm/Tourvesta',
+    repoUrl: 'https://github.com/sreelakshcm/tourvesta-web',
     gradient: 'bg-[linear-gradient(135deg,#e1e2ff,#c9eff5)]',
     roleLabel: 'Full-stack developer & product owner',
     technologies: ['React', 'TypeScript', 'Node.js', 'MongoDB'],
@@ -27,30 +27,47 @@ const projectList = [
       outcome:
         'Delivered an end-to-end, live travel product that demonstrates ownership across the full product lifecycle—from idea and user flows to implementation and deployment.',
     },
+    comingSoon: {
+      title: 'AI travel planner',
+      summary:
+        'A LangGraph.js multi-agent workflow behind the Node API that turns a request like “Plan a 5-day Kerala trip for two under ₹30,000” into a day-by-day itinerary.',
+      items: [
+        'Specialised agents research the destination, plan each day, check the budget, and review the plan, revising automatically when it runs over budget.',
+        'Grounds suggestions in travel tools and a small knowledge base (RAG), labels costs as estimates, and never books anything on its own.',
+      ],
+    },
   },
   {
-    type: 'PERSONAL PROJECT · 2026',
-    title: 'Portfolio Website',
+    type: 'FULL-STACK PROJECT · 2026',
+    title: 'HomeOps',
     description:
-      'A responsive personal portfolio that presents my skills, experience, and work through a polished interface, with smooth interactions, theme support, and persistent UI preferences.',
-    lightImg: '/assets/projects/portfolio-light.png',
-    darkImg: '/assets/projects/portfolio-dark.png',
-    liveUrl: 'https://portfolio-sree-lakshmi.vercel.app/',
-    repoUrl: 'https://github.com/sreelakshcm/PortfolioWebsite',
-    gradient: 'bg-[linear-gradient(135deg,#ffe5da,#ffeed1)]',
-    roleLabel: 'Full-stack developer & designer',
-    technologies: ['React', 'TypeScript', 'Tailwind CSS', 'Redux Toolkit'],
+      'A shared household workspace that keeps chores, shopping lists, inventory, receipts, and spending in sync for everyone at home, on desktop and phone.',
+    lightImg: '/assets/projects/homeops-light.png',
+    darkImg: '/assets/projects/homeops-dark.png',
+    liveUrl: 'https://homeops-web-phi.vercel.app/',
+    gradient: 'bg-[linear-gradient(135deg,#eae6ff,#ffe7d8)]',
+    roleLabel: 'Full-stack developer & product designer',
+    technologies: ['React', 'TypeScript', 'Node.js', 'Express', 'MongoDB', 'RTK Query'],
     caseStudy: {
-      role: 'Product design, frontend development, and deployment',
+      role: 'Product and UI design, frontend, backend API, testing, and deployment',
       problem:
-        'Recruiters need to understand a candidate’s experience, work, and availability quickly without having to navigate a dense résumé or disconnected links.',
+        'Household chores, groceries, supplies, and bills are usually spread across chats, notes, and memory, so nobody has one shared view of what needs doing or where money goes.',
       decisions: [
-        'Designed a recruiter-first flow that leads with professional experience and featured projects before the full technical toolkit.',
-        'Built a responsive, accessible interface with clear calls to action for the résumé, live work, and direct contact.',
-        'Added light and dark themes with persistent preferences, plus polished loading, navigation, and feedback states for a dependable experience.',
+        'Modelled inventory as a ledger of restocks, usage, and adjustments, so stock levels are always explainable and tied to purchases and the shopping list.',
+        'Kept financial changes reviewable: receipts go through an extract, review, confirm, and commit flow before anything is recorded.',
+        'Secured sessions with httpOnly cookies, CSRF tokens, rate limits, email verification, and Google sign-in, and designed separate desktop and phone layouts.',
       ],
       outcome:
-        'Delivered a live, maintainable personal portfolio that presents my full-stack experience, project ownership, and current learning direction in one focused place.',
+        'Delivered a live household app with role-based households, recurring tasks, budgets, and an activity feed, backed by 800+ automated tests across the web app and API.',
+    },
+    comingSoon: {
+      title: 'AI household assistant',
+      summary:
+        'A LangGraph.js assistant behind the Node API that reads tasks, stock, and spending to answer questions like “What’s running low?”',
+      items: [
+        'Suggests changes, such as adding items to the shopping list, that only apply after you confirm.',
+        'Reads PDF receipts as well as photos.',
+      ],
     },
   },
 ];
@@ -156,6 +173,31 @@ const Projects: FC = () => {
                         {project.caseStudy.outcome}
                       </p>
                     </div>
+                  </div>
+                )}
+
+                {project.comingSoon && (
+                  <div className="mt-4 rounded-[10px] border border-dashed border-violet/40 p-3 dark:border-violet-light/40">
+                    <div className="flex items-center gap-2">
+                      <span className="relative flex size-2">
+                        <span className="absolute inline-flex size-full animate-ping rounded-full bg-violet opacity-60" />
+                        <span className="relative inline-flex size-2 rounded-full bg-violet" />
+                      </span>
+                      <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.09em] text-violet">
+                        In progress · Coming soon
+                      </span>
+                    </div>
+                    <p className="mb-0 mt-1.5 text-[12px] font-semibold leading-[1.6] text-ink dark:text-white">
+                      {project.comingSoon.title}
+                    </p>
+                    <p className="mb-0 mt-1 text-[12px] leading-[1.6] text-muted">
+                      {project.comingSoon.summary}
+                    </p>
+                    <ul className="mt-1.5 grid gap-1 pl-4 text-[12px] leading-[1.6] text-muted marker:text-violet">
+                      {project.comingSoon.items.map((item) => (
+                        <li key={item}>{item}</li>
+                      ))}
+                    </ul>
                   </div>
                 )}
               </div>
