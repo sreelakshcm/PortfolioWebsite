@@ -4,7 +4,7 @@ import { RootState } from '@app/store';
 
 const projectList = [
   {
-    type: 'FEATURED PROJECT · 2026',
+    type: 'FEATURED PROJECT · MAR 2025 – PRESENT',
     title: 'Tourvesta',
     description:
       'A full tour discovery and booking platform that makes planning, reserving, and managing guided travel experiences straightforward.',
@@ -38,7 +38,7 @@ const projectList = [
     },
   },
   {
-    type: 'FULL-STACK PROJECT · 2026',
+    type: 'FULL-STACK PROJECT · LATE 2025 – PRESENT',
     title: 'HomeOps',
     description:
       'A shared household workspace that keeps chores, shopping lists, inventory, receipts, and spending in sync for everyone at home, on desktop and phone.',
